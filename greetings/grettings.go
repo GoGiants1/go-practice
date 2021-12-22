@@ -21,6 +21,22 @@ func Hello(name string) (string, error) {
 	return msg, nil
 }
 
+func Hellos(names []string) (map[string]string, error) {
+	// Map to associate names with messages
+	// make(map[key-type]value-type)
+	msgs := make(map[string]string)
+
+	for _, name := range names {
+		msg, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+		msgs[name] = msg
+
+	}
+	return msgs, nil
+}
+
 // init sets initial values for variables used in the function.
 func init() {
 	rand.Seed(time.Now().UnixNano())
